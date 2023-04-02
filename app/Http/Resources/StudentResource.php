@@ -17,19 +17,19 @@ class StudentResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'registrationNo' => $this->registration_no,
+            'registrationNo' => $this->registrationNo,
             'course' => $this->course,
-            'dateOfAdmission' => $this->date_of_admission,
+            'dateOfAdmission' => $this->dateOfAdmission,
             'courseduration' => $this->courseduration,
             'dob' => $this->dob,
-            'moteherName' => $this->moteher_name,
-            'fatherName' => $this->father_name,
+            'moteherName' => $this->moteherName,
+            'fatherName' => $this->fatherName,
             'address' => $this->address,
-            'profilePic' => $this->profile_pic,
+            'profilePic' => $this->profilePic,
             'certificatepic' => $this->certificatepic,
             'coursecompleted' => $this->coursecompleted,
             'certificateissued' => $this->certificateissued,
-            'certificateNo' => $this->certificate_no,
+            'certificateNo' => $this->certificateNo,
         ];
     }
 }

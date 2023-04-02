@@ -23,7 +23,4 @@ class StudentFilter extends APIBaseFilter {
         'certificateNo' => ['eq'],
     ];
 
-    // protected $columnMap = [
-    //     'districtId' => 'district_id'
-    // ];
 }

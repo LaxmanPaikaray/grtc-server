@@ -25,10 +25,11 @@ return new class extends Migration
             $table->string('fatherName');
             $table->string('address');
             $table->string('profilePic');
-            $table->string('certificatepic');
+            $table->string('certificatepic')->nullable();
             $table->string('coursecompleted');
             $table->string('certificateissued');
-            $table->string('certificateNo')->unique();
+            $table->string('certificateNo')->nullable();
+            $table->timestamps();
         });
     }
 
