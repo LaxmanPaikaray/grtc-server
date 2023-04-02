@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Filters\UserFilter;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Models\UserProfile;
@@ -28,14 +30,14 @@ class UserController extends Controller
         $users = User::where($filterItems)->paginate();
         return UserResource::collection($users->appends($request->query()));
     }
-
+   
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
         $user = User::create([
             'name' => $request->name,
@@ -43,7 +45,13 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
+        if(isset($request->phone)) {
+            $user_profile = UserProfile::create([
+                'phone' => $request->phone,
+                'user_id' => $user->id,
+            ]);
+            return new UserResource($user->loadMissing('profile'));
+        }
         return new UserResource($user);
     }
 

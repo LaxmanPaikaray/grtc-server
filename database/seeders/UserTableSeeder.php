@@ -33,6 +33,18 @@ class UserTableSeeder extends Seeder
             $adminUser->assignRole($adminRole);
         }
 
+        //Create a non-admin user
+        if(config('mint.user_email') == null) return;
+        $basicUser = User::create([
+            'name' => config('mint.user_name'),
+            'username' => config('mint.user_username'),
+            'email' => config('mint.user_email'),
+            'password' => Hash::make(config('mint.user_password'))
+        ]);
 
+        $basicRole = Role::where(['name' => 'basic'])->first();
+        if(isset($basicRole)) {
+            $basicUser->assignRole($basicRole);
+        }
     }
 }
